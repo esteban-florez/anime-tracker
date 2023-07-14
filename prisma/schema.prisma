@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Anime {
+  id String @id @default(cuid())
+  title String
+  description String
+  year Int
+  season Season
+  studio Studio @relation(fields: [studioId], references: [id])
+  studioId String
+}
+
+model Studio {
+  id String @id @default(cuid())
+  name String
+  anime Anime[]
+}
+
+enum Season {
+  WINTER
+  SPRING
+  SUMMER
+  FALL
+}
