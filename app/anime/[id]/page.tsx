@@ -29,19 +29,22 @@ export default async function AnimeDetailsPage({ params: { id } }: Context) {
             <h1 className="font-bold text-4xl">
               {anime.title}
             </h1>
-            <h4 className="font-semibold text-neutral-400 text-xl -mt-1">
+            <h2 className="font-semibold text-neutral-400 text-xl -mt-1">
               Estudio:
               <span className="uppercase">
                 {' ' + anime.studio.name}
               </span>
-            </h4>
+            </h2>
           </div>
-          <Button>Editar</Button>
         </div>
         <p className="text-xl font-semibold -mt-1 text-neutral-400">
           Temporada: {SEASONS[anime.season]} {anime.year}
         </p>
         <p className="text-lg mt-4">{anime.description}</p>
+        <div className="mt-4 flex gap-2">
+          <Button href="/anime">Volver al listado</Button>
+          <Button>Editar</Button>
+        </div>
       </section>
     </main>
   )
