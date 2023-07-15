@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Link from "next/link";
 
 type Props = React.PropsWithChildren<{
@@ -8,7 +9,7 @@ type Props = React.PropsWithChildren<{
 }>
 
 export default function Button({ href, onClick, children, type = 'button', size = 'base' }: Props) {
-  const classes = `bg-red-600 rounded-lg flex justify-center items-center px-4 font-semibold py-1 hover:bg-red-700 active:bg-red-800 transition-colors ${size === 'lg' ? 'text-2xl' : ''}`
+  const classes = clsx('bg-red-600 rounded-lg flex justify-center items-center px-4 font-semibold py-1 hover:bg-red-700 active:bg-red-800 transition-colors', size === 'lg' && 'text-xl')
 
   if (href === undefined) {
     return (

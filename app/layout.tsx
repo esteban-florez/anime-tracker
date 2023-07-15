@@ -28,7 +28,10 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
               <Button>Salir</Button>
             </div>
           </header>
-          {children}
+          <main className="p-4">
+            {children}
+
+          </main>
         </div>
       </body>
     </html>

@@ -1,7 +1,8 @@
 import Button from '#/components/Button'
-import { SEASONS } from "#/lib/translations"
-import prisma from '#/prisma/client'
-import { notFound } from 'next/navigation'
+import Heading from "#/components/Heading"
+import { getAnime } from "#/lib/data-fetching"
+import { SEASONS } from '#/lib/translations'
+import { Metadata } from 'next'
 
 interface Context {
   params: {
@@ -9,26 +10,23 @@ interface Context {
   }
 }
 
-export default async function AnimeDetailsPage({ params: { id } }: Context) {
-  const anime = await prisma.anime.findUnique({
-    where: { id },
-    include: {
-      studio: true,
-    }
-  })
+export async function generateMetadata({ params: { id } }: Context): Promise<Metadata> {
+  const anime = await getAnime(id)
 
-  if (anime === null) {
-    notFound()
+  return {
+    title: anime.title
   }
+}
+
+export default async function AnimeDetailsPage({ params: { id } }: Context) {
+  const anime = await getAnime(id)
 
   return (
-    <main className="p-4">
+    <>
       <section className="bg-black rounded-xl p-4">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="font-bold text-4xl">
-              {anime.title}
-            </h1>
+            <Heading>{anime.title}</Heading>
             <h2 className="font-semibold text-neutral-400 text-xl -mt-1">
               Estudio:
               <span className="uppercase">
@@ -46,6 +44,6 @@ export default async function AnimeDetailsPage({ params: { id } }: Context) {
           <Button>Editar</Button>
         </div>
       </section>
-    </main>
+    </>
   )
 }

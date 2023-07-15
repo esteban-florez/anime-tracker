@@ -1,7 +1,13 @@
 import Button from "#/components/Button"
+import Heading from "#/components/Heading"
 import prisma from "#/prisma/client"
+import { Metadata } from "next"
 
 export const revalidate = 10
+
+export const metadata: Metadata = {
+  title: 'Animes registrados'
+}
 
 export default async function AnimeListPage() {
   const animes = await prisma.anime.findMany({
@@ -11,10 +17,10 @@ export default async function AnimeListPage() {
   })
 
   return (
-    <main className="p-4">
+    <>
       <section className="flex justify-between py-2">
-        <h1 className="text-4xl font-bold tracking-tighter px-2">Animes registrados</h1>
-        <Button>Añadir</Button>
+        <Heading>Animes registrados</Heading>
+        <Button href="/anime/create">Añadir</Button>
       </section>
       <section className="grid grid-cols-3 gap-4 mt-4">
         {animes.length === 0 && <p>No hay animes registrados.</p>}
@@ -39,6 +45,6 @@ export default async function AnimeListPage() {
           )
         })}
       </section>
-    </main>
+    </>
   )
 }
