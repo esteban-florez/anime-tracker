@@ -3,8 +3,6 @@ import Heading from "#/components/Heading"
 import prisma from "#/prisma/client"
 import { Metadata } from "next"
 
-export const revalidate = 10
-
 export const metadata: Metadata = {
   title: 'Animes registrados'
 }

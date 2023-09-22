@@ -2,6 +2,7 @@ import Button from '#/components/Button'
 import Heading from "#/components/Heading"
 import { getAnime } from "#/lib/data-fetching"
 import { SEASONS } from '#/lib/translations'
+import prisma from "#/prisma/client"
 import { Metadata } from 'next'
 
 interface Context {
