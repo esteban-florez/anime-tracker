@@ -43,12 +43,13 @@ export default function Form({ action, method, redirectTo, children }: Props) {
   }
 
   function handleDialogClick() {
-    if (redirectTo === undefined) {
-      setAlert(false)
-      router.refresh()
-    } else {
+    if (redirectTo !== undefined) {
       router.push(redirectTo)
+    } else {
+      setAlert(false)
     }
+
+    router.refresh()
   }
 
   return (

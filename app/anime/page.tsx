@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   title: 'Animes registrados'
 }
 
+export const dynamic = 'force-dynamic'
+
 export default async function AnimeListPage() {
   const animes = await prisma.anime.findMany({
     include: {
