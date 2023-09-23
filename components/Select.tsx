@@ -13,7 +13,7 @@ export default function Select({ options, name, label }: Props) {
       <select className="rounded-lg bg-neutral-600 py-1 px-2 outline-none focus:ring-1 focus:ring-red-600 placeholder:text-neutral-400" name={name} id={name}>
         <option disabled>Seleccionar...</option>
         {options.map(option => (
-          <option value={option.value}>{option.label}</option>
+          <option key={option.value} value={option.value}>{option.label}</option>
         ))}
       </select>
     </div>

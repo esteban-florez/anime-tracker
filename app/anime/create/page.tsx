@@ -19,16 +19,23 @@ export default async function CreateAnimePage() {
   return (
     <>
       <Heading>Añadir anime</Heading>
-      <Form action="/api/anime" method="POST" redirectTo="/anime">
-        <Input label="Título" name="title" placeholder="Escribe el título del anime..." />
-        <Input label="Descripción" name="description" placeholder="Escribe la descripción del anime..." />
-        <Input label="Año de emisión" name="year" placeholder="Escribe el año de emisión..." />
-        <Select options={seasons} name="season" label="Temporada de emisión" />
-        <Select options={studioOptions} name="studioId" label="Estudio de animación" />
-        <Button type="submit">
-          Enviar
-        </Button>
-      </Form>
+      <div className="bg-black p-4 mt-4">
+        <Form action="/api/anime" method="POST" redirectTo="/anime">
+          <Input label="Título" name="title" placeholder="Escribe el título del anime..." />
+          <Input label="Descripción" name="description" placeholder="Escribe la descripción del anime..." />
+          <Input label="Año de emisión" name="year" placeholder="Escribe el año de emisión..." />
+          <Select options={seasons} name="season" label="Temporada de emisión" />
+          <Select options={studioOptions} name="studioId" label="Estudio de animación" />
+          <div className="flex gap-2">
+            <Button type="submit">
+              Enviar
+            </Button>
+            <Button href="/anime">
+              Volver al listado
+            </Button>
+          </div>
+        </Form>
+      </div>
     </>
   )
 }

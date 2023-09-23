@@ -1,5 +1,14 @@
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient()
+const prisma = (() => {
+  let prisma
+
+  if (prisma === undefined) {
+    prisma = new PrismaClient()
+  }
+
+  return prisma
+})()
+
 
 export default prisma

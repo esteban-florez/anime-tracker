@@ -1,4 +1,5 @@
 import Button from "#/components/Button"
+import Form from "#/components/Form"
 import Heading from "#/components/Heading"
 import prisma from "#/prisma/client"
 import { type Metadata } from "next"
@@ -36,8 +37,11 @@ export default async function AnimeListPage() {
               </h3>
               <p className="absolute bg-neutral-700 font-semibold p-1 rounded-lg top-3 right-2">{anime.year}</p>
               <p className="mt-2 line-clamp-1">{anime.description}</p>
-              <div className="mt-4 flex">
+              <div className="mt-4 flex gap-2">
                 <Button href={`/anime/${anime.id}`}>Detalles</Button>
+                <Form action={`/api/anime/${anime.id}`} method="DELETE">
+                  <Button type="submit">Eliminar</Button>
+                </Form>
               </div>
             </article>
           )
