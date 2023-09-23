@@ -1,7 +1,7 @@
 import Button from "#/components/Button"
 import Heading from "#/components/Heading"
 import prisma from "#/prisma/client"
-import { Metadata } from "next"
+import { type Metadata } from "next"
 
 export const metadata: Metadata = {
   title: 'Animes registrados'
