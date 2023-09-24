@@ -40,7 +40,10 @@ export default async function AnimeDetailsPage({ params: { id } }: Params) {
           <Button href={`/anime/${anime.id}/edit`}>
             Editar
           </Button>
-          <DeleteButton action={`/api/anime/${anime.id}`} />
+          <DeleteButton
+            action={`/api/anime/${anime.id}`}
+            redirectTo="/anime"
+          />
         </div>
       </section>
     </>

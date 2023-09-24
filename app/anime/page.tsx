@@ -1,6 +1,5 @@
 import Button from "#/components/Button"
 import DeleteButton from "#/components/DeleteButton"
-import Form from "#/components/Form"
 import Heading from "#/components/Heading"
 import prisma from "#/prisma/client"
 import { type Metadata } from "next"
