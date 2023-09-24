@@ -1,10 +1,5 @@
-import Button from "#/components/Button";
-import Form from "#/components/Form";
+import AnimeForm from "#/components/AnimeForm";
 import Heading from '#/components/Heading';
-import Input from '#/components/Input';
-import Select from "#/components/Select";
-import { SEASONS } from "#/lib/translations";
-import prisma from "#/prisma/client";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,30 +7,10 @@ export const metadata: Metadata = {
 }
 
 export default async function CreateAnimePage() {
-  const seasons = Object.entries(SEASONS).map(([value, label]) => ({ value, label }))
-  const studios = await prisma.studio.findMany()
-  const studioOptions = studios.map(studio => ({ value: studio.id, label: studio.name }))
-
   return (
     <>
       <Heading>Añadir anime</Heading>
-      <div className="bg-black p-4 mt-4">
-        <Form action="/api/anime" method="POST" redirectTo="/anime">
-          <Input label="Título" name="title" placeholder="Escribe el título del anime..." />
-          <Input label="Descripción" name="description" placeholder="Escribe la descripción del anime..." />
-          <Input label="Año de emisión" name="year" placeholder="Escribe el año de emisión..." />
-          <Select options={seasons} name="season" label="Temporada de emisión" />
-          <Select options={studioOptions} name="studioId" label="Estudio de animación" />
-          <div className="flex gap-2">
-            <Button type="submit">
-              Enviar
-            </Button>
-            <Button href="/anime">
-              Volver al listado
-            </Button>
-          </div>
-        </Form>
-      </div>
+      <AnimeForm type="create" />
     </>
   )
 }

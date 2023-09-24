@@ -1,4 +1,5 @@
 import Button from "#/components/Button"
+import DeleteButton from "#/components/DeleteButton"
 import Form from "#/components/Form"
 import Heading from "#/components/Heading"
 import prisma from "#/prisma/client"
@@ -41,9 +42,7 @@ export default async function AnimeListPage() {
               <p className="mt-2 line-clamp-1">{anime.description}</p>
               <div className="mt-4 flex gap-2">
                 <Button href={`/anime/${anime.id}`}>Detalles</Button>
-                <Form action={`/api/anime/${anime.id}`} method="DELETE">
-                  <Button type="submit">Eliminar</Button>
-                </Form>
+                <DeleteButton action={`/api/anime/${anime.id}`} />
               </div>
             </article>
           )

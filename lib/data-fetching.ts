@@ -1,7 +1,8 @@
 import prisma from "#/prisma/client"
 import { notFound } from "next/navigation"
+import { cache } from "react"
 
-export async function getAnime(id: string) {
+export const getAnime = cache(async (id: string) => {
   const anime = await prisma.anime.findUnique({
     where: { id },
     include: {
@@ -14,4 +15,4 @@ export async function getAnime(id: string) {
   }
 
   return anime
-}
+})

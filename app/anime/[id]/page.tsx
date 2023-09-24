@@ -1,16 +1,12 @@
+import BackButton from "#/components/BackButton"
 import Button from '#/components/Button'
+import DeleteButton from "#/components/DeleteButton"
 import Heading from "#/components/Heading"
 import { getAnime } from "#/lib/data-fetching"
 import { SEASONS } from '#/lib/translations'
 import { Metadata } from 'next'
 
-interface Context {
-  params: {
-    id: string
-  }
-}
-
-export async function generateMetadata({ params: { id } }: Context): Promise<Metadata> {
+export async function generateMetadata({ params: { id } }: Params): Promise<Metadata> {
   const anime = await getAnime(id)
 
   return {
@@ -18,7 +14,7 @@ export async function generateMetadata({ params: { id } }: Context): Promise<Met
   }
 }
 
-export default async function AnimeDetailsPage({ params: { id } }: Context) {
+export default async function AnimeDetailsPage({ params: { id } }: Params) {
   const anime = await getAnime(id)
 
   return (
@@ -40,8 +36,11 @@ export default async function AnimeDetailsPage({ params: { id } }: Context) {
         </p>
         <p className="text-lg mt-4">{anime.description}</p>
         <div className="mt-4 flex gap-2">
-          <Button href="/anime">Volver al listado</Button>
-          <Button>Editar</Button>
+          <BackButton />
+          <Button href={`/anime/${anime.id}/edit`}>
+            Editar
+          </Button>
+          <DeleteButton action={`/api/anime/${anime.id}`} />
         </div>
       </section>
     </>
